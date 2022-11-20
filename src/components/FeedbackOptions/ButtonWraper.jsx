@@ -12,5 +12,8 @@ export const ButtonWrapper = styled.div`
     :not(:last-child) {
       margin-right: 10px;
     }
+    :hover {
+      background-color: #2d4893;
+    }
   }
 `;
