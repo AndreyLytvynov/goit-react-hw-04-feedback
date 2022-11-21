@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ButtonWrapper } from './ButtonWraper';
+import { ButtonWrapper } from './ButtonWraper.styled';
 
 class FeedbackOptions extends Component {
   static defaultProps = {};
