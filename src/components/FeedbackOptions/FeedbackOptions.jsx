@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { ButtonWrapper } from './ButtonWraper.styled';
 
 class FeedbackOptions extends Component {
-  static defaultProps = {};
+  static defaultProps = {
+    goodIncrement: PropTypes.func.isRequired,
+    NeutralIncrement: PropTypes.func.isRequired,
+    badIncrement: PropTypes.func.isRequired,
+  };
 
   static propTypes = {};
 

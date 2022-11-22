@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Statistics extends Component {
   static defaultProps = {};
-  static propTypes = {};
+  static propTypes = {
+    good: PropTypes.number.isRequired,
+    neutral: PropTypes.number.isRequired,
+    bad: PropTypes.number.isRequired,
+  };
 
   render() {
     const { good, neutral, bad } = this.props;
