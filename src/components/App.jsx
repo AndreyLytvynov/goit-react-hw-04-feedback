@@ -1,64 +1,39 @@
 import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
 import Statistics from './Statistics/Statistics';
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Notification from './Statistics/Notification';
 import Section from './Section/Section';
 
-class App extends Component {
-  state = {
-    goodValue: 0,
-    badValue: 0,
-    neutralValue: 0,
-  };
+const App = () => {
+  const [goodValue, setGoodValue] = useState(0);
+  const [badValue, setBadValue] = useState(0);
+  const [neutralValue, setNeutralValue] = useState(0);
 
-  badIncrement = () => {
-    this.setState(prevState => {
-      return {
-        badValue: prevState.badValue + 1,
-      };
-    });
-  };
-  goodIncrement = () => {
-    this.setState(prevState => {
-      return {
-        goodValue: prevState.goodValue + 1,
-      };
-    });
-  };
-  neutralIncrement = () => {
-    this.setState(prevState => {
-      return {
-        neutralValue: prevState.neutralValue + 1,
-      };
-    });
-  };
+  return (
+    <>
+      <Section title={'Please live feedback'}>
+        <FeedbackOptions
+          badIncrement={() => {
+            setBadValue(prevState => prevState + 1);
+          }}
+          goodIncrement={() => {
+            setGoodValue(prevState => prevState + 1);
+          }}
+          NeutralIncrement={() => {
+            setNeutralValue(prevState => prevState + 1);
+          }}
+        />
+      </Section>
 
-  render() {
-    return (
-      <>
-        <Section title={'Please live feedback'}>
-          <FeedbackOptions
-            badIncrement={this.badIncrement}
-            goodIncrement={this.goodIncrement}
-            NeutralIncrement={this.neutralIncrement}
-          />
-        </Section>
-        <Section title={'Statistics'}>
-          {this.state.goodValue > 0 ||
-          this.state.badValue > 0 ||
-          this.state.neutralValue > 0 ? (
-            <Statistics
-              bad={this.state.badValue}
-              good={this.state.goodValue}
-              neutral={this.state.neutralValue}
-              total={this.state.totalValue}
-            />
-          ) : (
-            <Notification message="There is no feedback" />
-          )}
-        </Section>
-      </>
-    );
-  }
-}
+      <Section title={'Statistics'}>
+        {goodValue > 0 || badValue > 0 || neutralValue > 0 ? (
+          <Statistics bad={badValue} good={goodValue} neutral={neutralValue} />
+        ) : (
+          <Notification message="There is no feedback" />
+        )}
+      </Section>
+    </>
+  );
+};
+
 export default App;
